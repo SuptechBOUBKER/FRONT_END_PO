@@ -1,37 +1,40 @@
 async function register(event) {
-    event.preventDefault();
+    event.preventDefault(); // Prevent the default form submission
 
-    const name = document.getElementById('register-name').value;
-    const number = document.getElementById('register-number').value;
-    const order = document.getElementById('register-order').value;
-    const food = document.getElementById('register-food').value;
-    const musch = document.getElementById('register-musch').value;
-    const dateTime = document.getElementById('register-dateTime').value;
-    const address = document.getElementById('register-address').value;
-    const message = document.getElementById('register-message').value;
+    // Capture form data
+    var name = document.getElementById('register-name').value;
+    var number = document.getElementById('register-number').value;
+    var order = document.getElementById('register-order').value;
+    var food = document.getElementById('register-food').value;
+    var musch = document.getElementById('register-musch').value;
+    var dateTime = document.getElementById('register-dateTime').value;
+    var address = document.getElementById('register-address').value;
+    var message = document.getElementById('register-message').value;
 
-    const consumer = {
+    // Create an object with the captured data
+    var data = {
         name: name,
-        number: number,
-        order: order,
+        numbers: number,
+        orderS: order,
         food: food,
         musch: musch,
-        dateTime: dateTime,
+        dateTimes: dateTime,
         address: address,
         message: message
     };
 
     try {
-        const response = await fetch('http://localhost:8080/POproject/resto', {
+        const response = await fetch('http://localhost:8080/POproject/restos', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(consumer)
+            body: JSON.stringify(data)
         });
 
         if (response.ok) {
-            alert('Enregistrement réussi!');
+            alert('Commande réussi!');
+            window.location.href = 'index.html';
             // Vous pouvez ajouter ici des actions supplémentaires après l'enregistrement réussi, si nécessaire.
         } else {
             alert('Échec de l\'enregistrement!');
@@ -39,29 +42,5 @@ async function register(event) {
     } catch (error) {
         console.error('Erreur:', error);
         alert('Erreur de serveur!');
-    }
-}
-
-async function login(event) {
-    event.preventDefault();
-    
-    const name = document.getElementById('login-name').value;
-    const number = document.getElementById('login-number').value;
-  
-    try {
-      const response = await fetch('http://localhost:8080/POproject/resto');
-      const consumers = await response.json();
-  
-      const user = consumers.find(consumer => consumer.name === name && consumer.number === number);
-      
-      if (user) {
-        alert('Connexion réussie!'); // Message adapté pour la connexion réussie
-        // Ajoutez ici des actions supplémentaires après la connexion réussie, si nécessaire.
-      } else {
-        alert('Nom d\'utilisateur ou numéro invalide');
-      }
-    } catch (error) {
-      console.error('Erreur:', error);
-      alert('Erreur de serveur!');
-    }
+    }
 }
