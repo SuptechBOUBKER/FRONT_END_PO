@@ -6,586 +6,657 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="image/bibimbap_2276931.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <!-- Link Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <title>Food Website</title>
-    <link rel="stylesheet" href ="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        .home-slider .swiper-slide {
+            height: 100vh; /* Pleine hauteur de l'écran */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Styles pour la section Review */
+        #review .swiper-slide {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 10px;
+        }
+
+        #review .swiper-pagination-bullet {
+            background: #ccc;
+            opacity: 1;
+        }
+
+        #review .swiper-pagination-bullet-active {
+            background: #ef4444; /* Couleur rouge pour la pagination active */
+        }
+        
+        /* Styles pour le menu mobile */
+        .navbar.active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .navbar.active a {
+            display: block; /* Chaque lien occupe une ligne */
+            margin: 0.5rem 0; /* Espacement entre les liens */
+            padding: 0.75rem 1.5rem; /* Ajout de padding pour une meilleure ergonomie */
+            border-radius: 0.5rem; /* Coins arrondis */
+            background: rgba(255, 255, 255, 0.1); /* Fond semi-transparent */
+            color: white; /* Couleur du texte */
+            text-align: center; /* Texte centré */
+            transition: background 0.3s ease, transform 0.2s ease; /* Animation fluide */
+        }
+
+        .navbar.active a:hover {
+            background: rgba(255, 255, 255, 0.3); /* Fond plus clair au survol */
+            transform: scale(1.05); /* Lien légèrement agrandi */
+        }
+    </style>
 </head>
-<body>
-    <!-- Header Section-->
-    <header>
-        <a href="#" class="logo"><i class="fas fa-apple-alt"></i>resto</a>
-        <nav class="navbar">
-            <a class="active" href="#home">home</a>
-            <a href="#dishes">dishes</a>
-            <a href="#about">about</a>
-            <a href="#menu">menu</a>
-            <a href="#review">review</a>
-            <a href="#order">order</a>
+<body class="bg-gray-100 font-sans">
+    <!-- Header Section -->
+<header class="fixed top-0 left-0 right-0 bg-black bg-opacity-90 z-50">
+    <div class="container mx-auto flex justify-between items-center p-4">
+        <a href="#" class="text-white text-2xl font-bold flex items-center">
+            <i class="fas fa-apple-alt mr-2"></i>Resto
+        </a>
+        <nav class="navbar hidden md:flex space-x-6">
+            <a href="#home" class="text-white hover:text-red-500">Home</a>
+            <a href="#dishes" class="text-white hover:text-red-500">Dishes</a>
+            <a href="#about" class="text-white hover:text-red-500">About</a>
+            <a href="#menu" class="text-white hover:text-red-500">Menu</a>
+            <a href="#review" class="text-white hover:text-red-500">Review</a>
+            <a href="#order" class="text-white hover:text-red-500">Order</a>
         </nav>
-        <div class="icons">
-            <i class="fas fa-bars" id="menu-bars"></i>
-            <i class="fas fa-search" id="search-icon"></i>
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-shopping-cart"></a>
+        <div class="flex items-center space-x-4">
+            <i class="fas fa-bars text-white text-xl cursor-pointer md:hidden" id="menu-bars"></i>
+            <a href="#" class="fas fa-heart text-white text-xl"></a>
+            <a href="#" class="fas fa-shopping-cart text-white text-xl"></a>
         </div>
-    </header>
-    <!-- End Header Section -->
-
-    <!-- Search Form Section -->
-    <form action="#" id="search-form">
-        <input type="text" id="search-box" placeholder="Enter your search term">
-        <label for="search-box" class="fas fa-search"></label>
-        <i class="fas fa-times" id="close"></i>
-    </form>
-    <!-- End Search Form Section -->
-
-    <!-- home section starts-->
-<section class="home" id="home">
-    <div class="swiper-container home-slider">
-        <div class="swiper-wrapper wrapper">
-            <div class="swiper-slide slide">
-                <div class="content">
-                    <span>our special dish</span>
-                    <h3>burger</h3>
-                    <p>Dégustez notre burger signature, savamment préparé avec des ingrédients frais et une sauce maison, pour une expérience culinaire inoubliable.</p>
-                    <a href="#" class="btn">order Now</a>
+    </div>
+</header>
+    <!-- Home Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center">
+        <div class="swiper-container home-slider w-full h-full">
+            <div class="swiper-container home-slider">
+                <div class="swiper-slide relative">
+                    <img src="image/1burger.jpg" alt="Burger" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-center text-white p-4">
+                        <div>
+                            <span class="text-lg font-semibold">Our Special Dish</span>
+                            <h3 class="text-5xl font-bold mt-2">Burger</h3>
+                            <p class="mt-4 max-w-md mx-auto">
+                                Dégustez notre burger signature, savamment préparé avec des ingrédients frais et une sauce maison, pour une expérience culinaire inoubliable.
+                            </p>
+                            <a href="#" class="mt-6 inline-block bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition duration-300">Order Now</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="image">
-                    <img src="image/1burger.jpg" alt="">
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <!-- Dishes Section -->
+    <section id="dishes" class="py-16">
+        <div class="container mx-auto px-3">
+            <h3 class="text-lg text-red-500 text-center">Our Dishes</h3>
+            <h1 class="text-4xl font-bold text-center mt-2">Popular Dishes</h1>
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 mt-8">
+                <!-- Repeat this block for each dish -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+                    <img src="image/fried-chicken-french-fries-black-cement-floor.jpg" alt="Dish" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold">Plats Savoureux</h3>
+                        <div class="flex space-x-1 text-yellow-400 mt-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="text-lg font-bold mt-2">70DH</span>
+                        <a href="#" class="mt-4 inline-block bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition duration-300">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+                    <img src="image/korean-food-709606_1280.jpg" alt="Dish" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold">Plats Savoureux</h3>
+                        <div class="flex space-x-1 text-yellow-400 mt-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="text-lg font-bold mt-2">120DH</span>
+                        <a href="#" class="mt-4 inline-block bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition duration-300">Add to Cart</a>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+                    <img src="image/mixed-pizza-with-various-ingridients.jpg" alt="Dish" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold">Plats Savoureux</h3>
+                        <div class="flex space-x-1 text-yellow-400 mt-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="text-lg font-bold mt-2">80DH</span>
+                        <a href="#" class="mt-4 inline-block bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition duration-300">Add to Cart</a>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+                    <img src="image/appetizing-kofta-kebab-meatballs-with-sauce-tortillas-tacos-black-table_2829-7883.jpg" alt="Dish" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold">Plats Savoureux</h3>
+                        <div class="flex space-x-1 text-yellow-400 mt-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="text-lg font-bold mt-2">95DH</span>
+                        <a href="#" class="mt-4 inline-block bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition duration-300">Add to Cart</a>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+                    <img src="image/traditional-turkish-food-made-meat-wheat-delicious-ramadan-food-turkish-name-keskek_693630-19780.jpg" alt="Dish" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold">Plats Savoureux</h3>
+                        <div class="flex space-x-1 text-yellow-400 mt-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="text-lg font-bold mt-2">150DH</span>
+                        <a href="#" class="mt-4 inline-block bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition duration-300">Add to Cart</a>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+                    <img src="image/6traditional-turkish-food-made-meat-wheat-delicious-ramadan-food-turkish-name-keskek_693630-18643.jpg" alt="Dish" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold">Plats Savoureux</h3>
+                        <div class="flex space-x-1 text-yellow-400 mt-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="text-lg font-bold mt-2">130DH</span>
+                        <a href="#" class="mt-4 inline-block bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition duration-300">Add to Cart</a>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="swiper-pagination"></div>
-    </div>
-</section>
-    <!-- home section ends-->
+    </section>
 
-    <!--dishes sectioin starts-->
-<section class="dishes" id="dishes">
-    <h3 class="sub-heading"> our dishes</h3>
-    <h1 class="heading"> popular dishes</h1>
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-3">
+            <h3 class="text-lg text-red-500 text-center">About Us</h3>
+            <h1 class="text-4xl font-bold text-center mt-2">Why Choose Us?</h1>
+            <div class="flex flex-col md:flex-row items-center mt-8">
+                <div class="w-full md:w-1/2">
+                    <img src="image/penne-pasta-tomato-sauce-with-chicken-tomatoes-wooden-table_2829-19739.jpg" alt="About" class="rounded-lg shadow-lg">
+                </div>
+                <div class="w-full md:w-1/2 mt-6 md:mt-0 md:ml-8">
+                    <h3 class="text-2xl font-bold">Best Food in the Country</h3>
+                    <p class="mt-4 text-gray-600">
+                        Nous sommes déterminés à offrir une qualité supérieure et un service client exceptionnel. Découvrez pourquoi nous sommes votre choix numéro un pour des repas délicieux et des moments mémorables.
+                    </p>
+                    <p class="mt-4 text-gray-600">
+                        Découvrez notre sélection incomparable de plats, préparés avec soin pour offrir une expérience gustative exceptionnelle à chaque bouchée.
+                    </p>
+                    <div class="flex space-x-6 mt-6">
+                        <div class="text-center">
+                            <i class="fas fa-shopping-cart text-2xl text-red-500"></i>
+                            <span class="block mt-2">Free Delivery</span>
+                        </div>
+                        <div class="text-center">
+                            <i class="fas fa-dollar-sign text-2xl text-red-500"></i>
+                            <span class="block mt-2">Easy Payments</span>
+                        </div>
+                        <div class="text-center">
+                            <i class="fas fa-headset text-2xl text-red-500"></i>
+                            <span class="block mt-2">24/7 Service</span>
+                        </div>
+                    </div>
+                    <a href="#" class="mt-6 inline-block bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition duration-300">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
     
-    <div class="box-container">
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-eye"></a>
-            <img src="image/fried-chicken-french-fries-black-cement-floor.jpg" alt="">
-            <h3>plats savoureux</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
+    <!-- Menu section starts -->
+<section id="menu" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <h3 class="text-lg text-red-500 text-center">Our Menu</h3>
+        <h1 class="text-4xl font-bold text-center mt-2">Today's Speciality</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+            <!-- Mug, Coffee, Cup -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+                <div class="relative">
+                    <img src="image/menu1" alt="Mug, Coffee, Cup" class="w-full h-48 object-cover">
+                    <a href="#" class="absolute top-2 right-2 text-white text-xl"><i class="fas fa-heart"></i></a>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-xl font-semibold">Mug, Coffee, Cup</h3>
+                    <div class="flex space-x-1 text-yellow-400 mt-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="mt-2 text-gray-600">Commencez votre journée avec notre café torréfié artisanalement, servi dans une tasse élégante.</p>
+                    <div class="flex justify-between items-center mt-4">
+                        <span class="text-lg font-bold">120DH</span>
+                        <a href="#" class="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition duration-300">Add to Cart</a>
+                    </div>
+                </div>
             </div>
-            <span>70DH</span>
-            <a href="#" class="btn">add to cart</a>
-        </div>
 
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-eye"></a>
-            <img src="image/korean-food-709606_1280.jpg" alt="">
-            <h3>plats savoureux</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
+            <!-- Pizza with slices of bell pepper -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+                <div class="relative">
+                    <img src="image/side-view-pizza-with-slices-bell-pepper-pizza-slices-flour-board-cookware.jpg" alt="Pizza" class="w-full h-48 object-cover">
+                    <a href="#" class="absolute top-2 right-2 text-white text-xl"><i class="fas fa-heart"></i></a>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-xl font-semibold">Pizza with Slices of Bell Pepper</h3>
+                    <div class="flex space-x-1 text-yellow-400 mt-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="mt-2 text-gray-600">Découvrez la symphonie des saveurs avec notre pizza garnie de poivrons frais et colorés.</p>
+                    <div class="flex justify-between items-center mt-4">
+                        <span class="text-lg font-bold">220DH</span>
+                        <a href="#" class="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition duration-300">Add to Cart</a>
+                    </div>
+                </div>
             </div>
-            <span>120DH</span>
-            <a href="#" class="btn">add to cart</a>
-        </div>
 
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-eye"></a>
-            <img src="image/mixed-pizza-with-various-ingridients.jpg" alt="">
-            <h3>plats savoureux</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <span>80DH</span>
-            <a href="#" class="btn">add to cart</a>
+            <!-- Momos -->
+<div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+    <div class="relative">
+        <img src="image/menu2.jpg" alt="Momos" class="w-full h-48 object-cover">
+        <a href="#" class="absolute top-2 right-2 text-white text-xl"><i class="fas fa-heart"></i></a>
+    </div>
+    <div class="p-4">
+        <h3 class="text-xl font-semibold">Momos</h3>
+        <div class="flex space-x-1 text-yellow-400 mt-2">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
         </div>
-
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-eye"></a>
-            <img src="image/appetizing-kofta-kebab-meatballs-with-sauce-tortillas-tacos-black-table_2829-7883.jpg" alt="">
-            <h3>plats savoureux</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <span>95DH</span>
-            <a href="#" class="btn">add to cart</a>
-        </div>
-
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-eye"></a>
-            <img src="image/traditional-turkish-food-made-meat-wheat-delicious-ramadan-food-turkish-name-keskek_693630-19780.jpg" alt="">
-            <h3>plats savoureux</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <span>150DH</span>
-            <a href="#" class="btn">add to cart</a>
-        </div>
-
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-eye"></a>
-            <img src="image/6traditional-turkish-food-made-meat-wheat-delicious-ramadan-food-turkish-name-keskek_693630-18643.jpg" alt="">
-            <h3>plats savoureux</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <span>130DH</span>
-            <a href="#" class="btn">add to cart</a>
+        <p class="mt-2 text-gray-600">Savourez nos momos faits maison, farcis d'une délicieuse préparation de légumes et d'épices, cuits à la vapeur pour une explosion de saveurs à chaque bouchée.</p>
+        <div class="flex justify-between items-center mt-4">
+            <span class="text-lg font-bold">100DH</span>
+            <a href="#" class="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition duration-300">Add to Cart</a>
         </div>
     </div>
-</section>
-    <!--dishes sectioin ends-->
-    <!--about section strats-->
-<section class="about" id="about">
-    <h3 class="sub-heading">about us </h3>
-    <h1 class="heading">why choose us?</h1>
-    <div class="row">
-        <div class="image">
-            <img src="image/penne-pasta-tomato-sauce-with-chicken-tomatoes-wooden-table_2829-19739.jpg" alt="">
+</div>
+
+<!-- Salmon Teriyaki -->
+<div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+    <div class="relative">
+        <img src="image/menu3.jpg" alt="Salmon Teriyaki" class="w-full h-48 object-cover">
+        <a href="#" class="absolute top-2 right-2 text-white text-xl"><i class="fas fa-heart"></i></a>
+    </div>
+    <div class="p-4">
+        <h3 class="text-xl font-semibold">Salmon Teriyaki</h3>
+        <div class="flex space-x-1 text-yellow-400 mt-2">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
         </div>
-        <div class="content">
-            <h3>best food in the country</h3>
-            <p>"Nous sommes déterminés à offrir une qualité supérieure et un service client exceptionnel. Découvrez pourquoi nous sommes votre choix numéro un pour des repas délicieux et des moments mémorables."</p>
-            <p>"Découvrez notre sélection incomparable de plats, préparés avec soin pour offrir une expérience gustative exceptionnelle à chaque bouchée."</p>
-            <div class="icons-container">
-                <div class="icons">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span>free delivery</span>
-                </div>
-                <div class="icons">
-                    <i class="fas fa-dollar-sign"></i>
-                    <span>easy payments</span>
-                </div>
-               <div class="icons">
-                    <i class="fas fa-headset"></i>
-                    <span>24/7 service</span>
-               </div> 
-            </div>
-            <a href="#" class="btn">learn more</a>
+        <p class="mt-2 text-gray-600">Dégustez notre saumon teriyaki parfaitement glacé, accompagné d'une sauce sucrée et salée, pour une expérience culinaire inoubliable.</p>
+        <div class="flex justify-between items-center mt-4">
+            <span class="text-lg font-bold">150DH</span>
+            <a href="#" class="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition duration-300">Add to Cart</a>
         </div>
     </div>
-</section>
-    <!--about section ends-->
-  <!-- Menu section starts -->
-<section class="menu" id="menu">
-    <h3 class="sub-heading">our menu</h3>
-    <h1 class="heading">today's speciality</h1>
-    <div class="box-container">
-        <!-- Mug, Coffee, Cup -->
-        <div class="box">
-            <div class="image">
-                <img src="image/menu1" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>Mug, Coffee, Cup</h3>
-                <p>Commencez votre journée avec notre café torréfié artisanalement, servi dans une tasse élégante qui amplifie les arômes riches et délicats de notre sélection de grains de qualité supérieure.</p>
-                <a href="#" class="btn">add to cart</a>
-                <span class="price">120DH</span>
-            </div>
-        </div>
+</div>
 
-        <!-- Pizza with slices of bell pepper -->
-        <div class="box">
-            <div class="image">
-                <img src="image/side-view-pizza-with-slices-bell-pepper-pizza-slices-flour-board-cookware.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>Pizza with Slices of Bell Pepper</h3>
-                <p>Découvrez la symphonie des saveurs avec notre pizza garnie de poivrons frais et colorés, sur une pâte fine et croustillante, agrémentée de notre sauce tomate maison.</p>
-                <a href="#" class="btn">add to cart</a>
-                <span class="price">220DH</span>
-            </div>
+<!-- Salad with Figs and Cheese -->
+<div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+    <div class="relative">
+        <img src="image/menu4.jpg" alt="Salad with Figs and Cheese" class="w-full h-48 object-cover">
+        <a href="#" class="absolute top-2 right-2 text-white text-xl"><i class="fas fa-heart"></i></a>
+    </div>
+    <div class="p-4">
+        <h3 class="text-xl font-semibold">Salad with Figs and Cheese</h3>
+        <div class="flex space-x-1 text-yellow-400 mt-2">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
         </div>
-
-        <!-- Momos -->
-        <div class="box">
-            <div class="image">
-                <img src="image/menu2.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>Momos</h3>
-                <p>Savourez nos momos faits maison, farcis d'une délicieuse préparation de légumes et d'épices, cuits à la vapeur pour une explosion de saveurs à chaque bouchée.</p>
-                <a href="#" class="btn">add to cart</a>
-                <span class="price">100DH</span>
-            </div>
+        <p class="mt-2 text-gray-600">Une salade rafraîchissante avec des figues sucrées et du fromage crémeux, agrémentée d'une vinaigrette balsamique pour un équilibre parfait des saveurs.</p>
+        <div class="flex justify-between items-center mt-4">
+            <span class="text-lg font-bold">160DH</span>
+            <a href="#" class="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition duration-300">Add to Cart</a>
         </div>
+    </div>
+</div>
 
-        <!-- Food, Salmon, Teriyaki -->
-        <div class="box">
-            <div class="image">
-                <img src="image/menu3.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>Salmon Teriyaki</h3>
-                <p>Dégustez notre saumon teriyaki parfaitement glacé, accompagné d'une sauce sucrée et salée, pour une expérience culinaire inoubliable.</p>
-                <a href="#" class="btn">add to cart</a>
-                <span class="price">150DH</span>
-            </div>
+<!-- Assiette de Fromage -->
+<div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+    <div class="relative">
+        <img src="image/MENU5.webp" alt="Assiette de Fromage" class="w-full h-48 object-cover">
+        <a href="#" class="absolute top-2 right-2 text-white text-xl"><i class="fas fa-heart"></i></a>
+    </div>
+    <div class="p-4">
+        <h3 class="text-xl font-semibold">Assiette de Fromage</h3>
+        <div class="flex space-x-1 text-yellow-400 mt-2">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
         </div>
-
-        <!-- Salad, Figs, Cheese -->
-        <div class="box">
-            <div class="image">
-                <img src="image/menu4.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>Salad with Figs and Cheese</h3>
-                <p>Une salade rafraîchissante avec des figues sucrées et du fromage crémeux, agrémentée d'une vinaigrette balsamique pour un équilibre parfait des saveurs.</p>
-                <a href="#" class="btn">add to cart</a>
-                <span class="price">160DH</span>
-            </div>
+        <p class="mt-2 text-gray-600">Un assortiment de fromages fins, parfait pour les amateurs de fromage, accompagné de fruits frais et de noix pour une dégustation complète.</p>
+        <div class="flex justify-between items-center mt-4">
+            <span class="text-lg font-bold">170DH</span>
+            <a href="#" class="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition duration-300">Add to Cart</a>
         </div>
+    </div>
+</div>
 
-        <!-- Assiette de Fromage -->
-        <div class="box">
-            <div class="image">
-                <img src="image/MENU5.webp" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>Assiette de Fromage</h3>
-                <p>Un assortiment de fromages fins, parfait pour les amateurs de fromage, accompagné de fruits frais et de noix pour une dégustation complète.</p>
-                <a href="#" class="btn">add to cart</a>
-                <span class="price">170DH</span>
-            </div>
+<!-- Chicken Skewers -->
+<div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+    <div class="relative">
+        <img src="image/MENU6.jpg" alt="Chicken Skewers" class="w-full h-48 object-cover">
+        <a href="#" class="absolute top-2 right-2 text-white text-xl"><i class="fas fa-heart"></i></a>
+    </div>
+    <div class="p-4">
+        <h3 class="text-xl font-semibold">Chicken Skewers</h3>
+        <div class="flex space-x-1 text-yellow-400 mt-2">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
         </div>
-
-        <!-- Chicken Skewers -->
-        <div class="box">
-            <div class="image">
-                <img src="image/MENU6.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>Chicken Skewers</h3>
-                <p>Des brochettes de poulet tendre et juteux, marinées avec des épices exotiques et grillées à la perfection pour un plaisir maximum.</p>
-                <a href="#" class="btn">add to cart</a>
-                <span class="price">80DH</span>
-            </div>
+        <p class="mt-2 text-gray-600">Des brochettes de poulet tendre et juteux, marinées avec des épices exotiques et grillées à la perfection pour un plaisir maximum.</p>
+        <div class="flex justify-between items-center mt-4">
+            <span class="text-lg font-bold">80DH</span>
+            <a href="#" class="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition duration-300">Add to Cart</a>
         </div>
+    </div>
+</div>
 
-        <!-- Salmon, Fish, Seafood -->
-        <div class="box">
-            <div class="image">
-                <img src="image/MENU8.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>Salmon with Seafood</h3>
-                <p>Une fusion parfaite de saumon frais et de fruits de mer, servie avec une sauce légère pour une expérience gastronomique raffinée.</p>
-                <a href="#" class="btn">add to cart</a>
-                <span class="price">200DH</span>
-            </div>
+<!-- Salmon with Seafood -->
+<div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+    <div class="relative">
+        <img src="image/MENU8.jpg" alt="Salmon with Seafood" class="w-full h-48 object-cover">
+        <a href="#" class="absolute top-2 right-2 text-white text-xl"><i class="fas fa-heart"></i></a>
+    </div>
+    <div class="p-4">
+        <h3 class="text-xl font-semibold">Salmon with Seafood</h3>
+        <div class="flex space-x-1 text-yellow-400 mt-2">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
         </div>
+        <p class="mt-2 text-gray-600">Une fusion parfaite de saumon frais et de fruits de mer, servie avec une sauce légère pour une expérience gastronomique raffinée.</p>
+        <div class="flex justify-between items-center mt-4">
+            <span class="text-lg font-bold">200DH</span>
+            <a href="#" class="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition duration-300">Add to Cart</a>
+        </div>
+    </div>
+</div>
 
-        <!-- Asparagus, Steak, Veal Steak -->
-        <div class="box">
-            <div class="image">
-                <img src="image/MENU7.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>Asparagus with Veal Steak</h3>
-                <p>Dégustez notre steak de veau juteux accompagné d'asperges croquantes, pour une combinaison de textures et de saveurs exquises.</p>
-                <a href="#" class="btn">add to cart</a>
-                <span class="price">300DH</span>
-            </div>
+<!-- Asparagus with Veal Steak -->
+<div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+    <div class="relative">
+        <img src="image/MENU7.jpg" alt="Asparagus with Veal Steak" class="w-full h-48 object-cover">
+        <a href="#" class="absolute top-2 right-2 text-white text-xl"><i class="fas fa-heart"></i></a>
+    </div>
+    <div class="p-4">
+        <h3 class="text-xl font-semibold">Asparagus with Veal Steak</h3>
+        <div class="flex space-x-1 text-yellow-400 mt-2">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+        </div>
+        <p class="mt-2 text-gray-600">Dégustez notre steak de veau juteux accompagné d'asperges croquantes, pour une combinaison de textures et de saveurs exquises.</p>
+        <div class="flex justify-between items-center mt-4">
+            <span class="text-lg font-bold">300DH</span>
+            <a href="#" class="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition duration-300">Add to Cart</a>
+        </div>
+    </div>
+</div>
         </div>
     </div>
 </section>
 <!-- Menu section ends -->
+
 <!-- Review section starts -->
-<section class="review" id="review">
-    <h3 class="sub-heading">customer's review</h3>
-    <h1 class="heading">what they say</h1>
-    <div class="swiper-container review-slider">
-        <div class="swiper-wrapper">
+<section id="review" class="review py-16 bg-gray-100">
+    <div class="container mx-auto px-4">
+        <h3 class="text-lg text-red-500 text-center">Customer's Review</h3>
+        <h1 class="text-4xl font-bold text-center mt-2">What They Say</h1>
+        <div class="swiper-container review-slider mt-8">
+            <div class="swiper-wrapper">
+                <!-- Témoignage 1 -->
+                <div class="swiper-slide bg-white rounded-lg shadow-lg p-6 mx-4">
+                    <i class="fas fa-quote-right text-red-500 text-2xl"></i>
+                    <div class="flex items-center mt-4">
+                        <img src="image/customer-1.jpg" alt="Alexandre R." class="w-12 h-12 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h3 class="text-xl font-semibold">Alexandre R.</h3>
+                            <div class="flex space-x-1 text-yellow-400 mt-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-gray-600">
+                        J'ai adoré l'ambiance et la nourriture était fantastique ! Les plats étaient parfaitement assaisonnés et le service était impeccable. Je recommande vivement ce restaurant !
+                    </p>
+                </div>
 
-            <!-- Témoignage 1 -->
-            <div class="swiper-slide slide">
-                <i class="fas fa-quote-right"></i>
-                <div class="user">
-                    <img src="image/customer-1.jpg" alt="Emma L.">
-                    <div class="user-info">
-                        <h3>Alexandre R.</h3>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
+                <!-- Témoignage 2 -->
+                <div class="swiper-slide bg-white rounded-lg shadow-lg p-6 mx-4">
+                    <i class="fas fa-quote-right text-red-500 text-2xl"></i>
+                    <div class="flex items-center mt-4">
+                        <img src="image/customer-2.jpg" alt="Lucas D." class="w-12 h-12 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h3 class="text-xl font-semibold">Lucas D.</h3>
+                            <div class="flex space-x-1 text-yellow-400 mt-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
                         </div>
                     </div>
+                    <p class="mt-4 text-gray-600">
+                        Une expérience culinaire inoubliable ! Les plats étaient non seulement délicieux mais aussi magnifiquement présentés. Je reviendrai certainement pour essayer d'autres spécialités.
+                    </p>
                 </div>
-                <p>J'ai adoré l'ambiance et la nourriture était fantastique ! Les plats étaient parfaitement assaisonnés et le service était impeccable. Je recommande vivement ce restaurant !</p>
-            </div>
-            
-            <!-- Témoignage 2 -->
-            <div class="swiper-slide slide">
-                <i class="fas fa-quote-right"></i>
-                <div class="user">
-                    <img src="image/customer-2.jpg" alt="Lucas D.">
-                    <div class="user-info">
-                        <h3>Lucas D.</h3>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                    </div>
-                </div>
-                <p>Une expérience culinaire inoubliable ! Les plats étaient non seulement délicieux mais aussi magnifiquement présentés. Je reviendrai certainement pour essayer d'autres spécialités.</p>
-            </div>
 
-            <!-- Témoignage 3 -->
-            <div class="swiper-slide slide">
-                <i class="fas fa-quote-right"></i>
-                <div class="user">
-                    <img src="image/customer-3.jpg" alt="Sophie M.">
-                    <div class="user-info">
-                        <h3>Loois    M.</h3>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
+                <!-- Témoignage 3 -->
+                <div class="swiper-slide bg-white rounded-lg shadow-lg p-6 mx-4">
+                    <i class="fas fa-quote-right text-red-500 text-2xl"></i>
+                    <div class="flex items-center mt-4">
+                        <img src="image/customer-3.jpg" alt="Sophie M." class="w-12 h-12 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h3 class="text-xl font-semibold">Sophie M.</h3>
+                            <div class="flex space-x-1 text-yellow-400 mt-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
                         </div>
                     </div>
+                    <p class="mt-4 text-gray-600">
+                        Des saveurs authentiques et une présentation élégante. Chaque plat était une découverte de nouvelles saveurs. Le personnel était également très accueillant et professionnel.
+                    </p>
                 </div>
-                <p>Des saveurs authentiques et une présentation élégante. Chaque plat était une découverte de nouvelles saveurs. Le personnel était également très accueillant et professionnel.</p>
-            </div>
 
-            <!-- Témoignage 4 -->
-            <div class="swiper-slide slide">
-                <i class="fas fa-quote-right"></i>
-                <div class="user">
-                    <img src="image/customer-4.jpg" alt="Alexandre R.">
-                    <div class="user-info">
-                        <h3>Emma L.</h3>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
+                <!-- Témoignage 4 -->
+                <div class="swiper-slide bg-white rounded-lg shadow-lg p-6 mx-4">
+                    <i class="fas fa-quote-right text-red-500 text-2xl"></i>
+                    <div class="flex items-center mt-4">
+                        <img src="image/customer-4.jpg" alt="Sophie M." class="w-12 h-12 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h3 class="text-xl font-semibold">Emma </h3>
+                            <div class="flex space-x-1 text-yellow-400 mt-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
                         </div>
                     </div>
+                    <p class="mt-4 text-gray-600">
+                        Un lieu idéal pour une soirée entre amis ou en famille. La variété des plats et la qualité des ingrédients m'ont vraiment impressionné. C'est devenu l'un de mes endroits préférés.
+                    </p>
                 </div>
-                <p>Un lieu idéal pour une soirée entre amis ou en famille. La variété des plats et la qualité des ingrédients m'ont vraiment impressionné. C'est devenu l'un de mes endroits préférés.</p>
             </div>
-            
+            <!-- Pagination -->
+            <div class="swiper-pagination mt-4"></div>
         </div>
     </div>
 </section>
+
 <!-- Review section ends -->
 
-<!-- order section starts -->
-<section class="order" id="order">
-    <h3 class="sub-heading">order now</h3>
-    <h1 class="heading">free and fast</h1>
-
-    <form action="" onsubmit="register(event)">
-        <div class="inputBox">
-            <div class="input">
-                <span>your name</span>
-                <input type="text" id="register-name" placeholder="enter your name" required>
+<!-- Order section starts -->
+<section id="order" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <h3 class="text-lg text-red-500 text-center">Order Now</h3>
+        <h1 class="text-4xl font-bold text-center mt-2">Free and Fast</h1>
+        <form class="mt-8 max-w-2xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-gray-700">Your Name</label>
+                    <input type="text" placeholder="Enter your name" class="w-full p-2 border rounded mt-2">
+                </div>
+                <div>
+                    <label class="block text-gray-700">Your Number</label>
+                    <input type="text" placeholder="Enter your number" class="w-full p-2 border rounded mt-2">
+                </div>
+                <div>
+                    <label class="block text-gray-700">Your Order</label>
+                    <input type="text" placeholder="Enter food name" class="w-full p-2 border rounded mt-2">
+                </div>
+                <div>
+                    <label class="block text-gray-700">Additional Food</label>
+                    <input type="text" placeholder="Extra with food" class="w-full p-2 border rounded mt-2">
+                </div>
+                <div>
+                    <label class="block text-gray-700">How Much</label>
+                    <input type="number" placeholder="How many orders" class="w-full p-2 border rounded mt-2">
+                </div>
+                <div>
+                    <label class="block text-gray-700">Date and Time</label>
+                    <input type="datetime-local" class="w-full p-2 border rounded mt-2">
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-gray-700">Your Address</label>
+                    <textarea placeholder="Enter your address" class="w-full p-2 border rounded mt-2" rows="4"></textarea>
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-gray-700">Your Message</label>
+                    <textarea placeholder="Enter your message" class="w-full p-2 border rounded mt-2" rows="4"></textarea>
+                </div>
             </div>
-            <div class="input">
-                <span>your number</span>
-                <input type="text" id="register-number" placeholder="enter your number" required>
-            </div>
-        </div>
-
-        <div class="inputBox">
-            <div class="input">
-                <span>your order</span>
-                <input type="text" id="register-order" placeholder="enter food name" required>
-            </div>
-            <div class="input">
-                <span>additional food</span>
-                <input type="text" id="register-food" placeholder="extra width food">
-            </div>
-        </div>
-
-        <div class="inputBox">
-            <div class="input">
-                <span>how much</span>
-                <input type="number" id="register-musch" placeholder="how many orders" required>
-            </div>
-            <div class="input">
-                <span>date and time</span>
-                <input type="datetime-local" id="register-dateTime" required>
-            </div>
-        </div>
-
-        <div class="inputBox">
-            <div class="input">
-                <span>your address</span>
-                <textarea id="register-address" placeholder="enter your address" cols="30" rows="5" required></textarea>
-            </div>
-            <div class="input">
-                <span>your message</span>
-                <textarea id="register-message" placeholder="enter your message" cols="30" rows="5"></textarea>
-            </div>
-        </div>
-
-        <input type="submit" value="order Now" class="btn">
-    </form>
-</section>
-
-
-<!-- footer section starts -->
-<section class="footer">
-    <div class="box-container">
-        <div class="box">
-            <h3>locations</h3>
-            <a href="#">Casablanca</a>
-            <a href="#">Tange</a>
-            <a href="#">Agadir</a>
-            <a href="#">Rabat</a>
-            <a href="#">Sefrou</a>
-        </div>
-
-        <div class="box">
-            <h3>quick links</h3>
-            <a href="#">home</a>
-            <a href="#">dishes</a>
-            <a href="#">about</a>
-            <a href="#">menu</a>
-            <a href="#">review</a>
-            <a href="#">order</a>
-        </div>
-
-        <div class="box">
-            <h3>contact info</h3>
-            <a href="#">+611 222 567</a>
-            <a href="#">+612 242 887</a>
-            <a href="#">Resto@gmail.com</a>
-            <a href="#">boubker@gmail.com</a>
-            <a href="#">MARRIF, Casablanca</a>
-        </div>
-
-        <div class="box">
-            <h3>follow us</h3>
-            <a href="#">facebook</a>
-            <a href="#">twitter</a>
-            <a href="#">instagram</a>
-            <a href="#">linkedin</a>
-        </div>
+            <button type="submit" class="mt-6 w-full bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition duration-300">Order Now</button>
+        </form>
     </div>
 </section>
-<!-- footer section ends -->
-    
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="script.js"></script>
-<script src="login.js"></script>
-<!-- Link Bootstrap JS (optional, but needed for modal functionality) -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Order section ends -->
+    <!-- Footer Section -->
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <h3 class="text-xl font-bold mb-4">Locations</h3>
+                <a href="#" class="block">Casablanca</a>
+                <a href="#" class="block">Tanger</a>
+                <a href="#" class="block">Agadir</a>
+                <a href="#" class="block">Rabat</a>
+                <a href="#" class="block">Sefrou</a>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                <a href="#" class="block">Home</a>
+                <a href="#" class="block">Dishes</a>
+                <a href="#" class="block">About</a>
+                <a href="#" class="block">Menu</a>
+                <a href="#" class="block">Review</a>
+                <a href="#" class="block">Order</a>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-4">Contact Info</h3>
+                <a href="#" class="block">+611 222 567</a>
+                <a href="#" class="block">+612 242 887</a>
+                <a href="#" class="block">Resto@gmail.com</a>
+                <a href="#" class="block">boubker@gmail.com</a>
+                <a href="#" class="block">MARRIF, Casablanca</a>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-4">Follow Us</h3>
+                <a href="#" class="block">Facebook</a>
+                <a href="#" class="block">Twitter</a>
+                <a href="#" class="block">Instagram</a>
+                <a href="#" class="block">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script src="login.js"></script>
 </body>
 </html>

@@ -1,48 +1,50 @@
-// Sélection des éléments du DOM pour le menu et la barre de navigation
 let menu = document.querySelector('#menu-bars');
 let navbar = document.querySelector('.navbar');
+let searchIcon = document.querySelector('#search-icon');
+let searchForm = document.querySelector('#search-form');
+let closeSearch = document.querySelector('#close');
 
-// Gestion de l'événement 'onclick' pour le menu
-menu.onclick = () => {
-    menu.classList.toggle('fa-times'); // Ajoute ou retire la classe 'fa-times' pour l'icône
-    navbar.classList.toggle('active'); // Ajoute ou retire la classe 'active' pour le menu
-}
+// Gestion du menu mobile
+menu?.addEventListener('click', () => {
+    menu.classList.toggle('fa-times');
+    navbar.classList.toggle('active');
+});
 
 // Gestion de l'affichage du formulaire de recherche
-document.querySelector('#search-icon').onclick = () => {
-    document.querySelector('#search-form').classList.toggle('active');
-}
+searchIcon?.addEventListener('click', () => {
+    searchForm.classList.toggle('active');
+});
 
 // Gestion de la fermeture du formulaire de recherche
-document.querySelector('#close').onclick = () => {
-    document.querySelector('#search-form').classList.remove('active');
-}
+closeSearch?.addEventListener('click', () => {
+    searchForm.classList.remove('active');
+});
 
-// Sélection des sections et des liens de navigation
-let section = document.querySelectorAll('section');
+// Gestion de la mise à jour des liens actifs
+let sections = document.querySelectorAll('section');
 let navLinks = document.querySelectorAll('header .navbar a');
 
-// Gestion de l'événement 'onscroll' pour la fenêtre
 window.onscroll = () => {
-    menu.classList.remove('fa-times'); // Retire la classe 'fa-times' pour l'icône
-    navbar.classList.remove('active'); // Retire la classe 'active' pour le menu
+    menu?.classList.remove('fa-times');
+    navbar?.classList.remove('active');
 
-    section.forEach(sec => {
+    sections.forEach((sec) => {
         let top = window.scrollY;
         let height = sec.offsetHeight;
         let offset = sec.offsetTop - 150;
         let id = sec.getAttribute('id');
 
-        // Correction de la condition de détection de la section visible
         if (top >= offset && top < offset + height) {
-            navLinks.forEach(link => {
+            navLinks.forEach((link) => {
                 link.classList.remove('active');
-                // Sélection de l'élément correspondant et ajout de la classe 'active'
-                document.querySelector('header .navbar a[href*=' + id + ']').classList.add('active');
+                if (link.getAttribute('href').includes(id)) {
+                    link.classList.add('active');
+                }
             });
         }
     });
-}
+};
+
 
 // Configuration de Swiper pour la section des avis
 var swiper = new Swiper(".review-slider", {
