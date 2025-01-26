@@ -22,7 +22,52 @@
             background-position: center;
         }
 
+        /* Styles pour la section Review */
+        #review .swiper-slide {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 10px;
+        }
+
+        #review .swiper-pagination-bullet {
+            background: #ccc;
+            opacity: 1;
+        }
+
+        #review .swiper-pagination-bullet-active {
+            background: #ef4444; /* Couleur rouge pour la pagination active */
+        }
         
+        /* Styles pour le menu mobile */
+        .navbar.active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .navbar.active a {
+            display: block; /* Chaque lien occupe une ligne */
+            margin: 0.5rem 0; /* Espacement entre les liens */
+            padding: 0.75rem 1.5rem; /* Ajout de padding pour une meilleure ergonomie */
+            border-radius: 0.5rem; /* Coins arrondis */
+            background: rgba(255, 255, 255, 0.1); /* Fond semi-transparent */
+            color: white; /* Couleur du texte */
+            text-align: center; /* Texte centré */
+            transition: background 0.3s ease, transform 0.2s ease; /* Animation fluide */
+        }
+
+        .navbar.active a:hover {
+            background: rgba(255, 255, 255, 0.3); /* Fond plus clair au survol */
+            transform: scale(1.05); /* Lien légèrement agrandi */
+        }
     </style>
 </head>
 <body class="bg-gray-100 font-sans">
@@ -479,7 +524,7 @@
                 </div>
 
                 <!-- Témoignage 3 -->
-                <div class="swiper-slide bg-white rounded-lg shadow-lg p-6 mx-4">
+                <!--<div class="swiper-slide bg-white rounded-lg shadow-lg p-6 mx-4">
                     <i class="fas fa-quote-right text-red-500 text-2xl"></i>
                     <div class="flex items-center mt-4">
                         <img src="image/customer-3.jpg" alt="Sophie M." class="w-12 h-12 rounded-full object-cover">
@@ -497,10 +542,10 @@
                     <p class="mt-4 text-gray-600">
                         Des saveurs authentiques et une présentation élégante. Chaque plat était une découverte de nouvelles saveurs. Le personnel était également très accueillant et professionnel.
                     </p>
-                </div>
+                </div>-->
 
                 <!-- Témoignage 4 -->
-                <div class="swiper-slide bg-white rounded-lg shadow-lg p-6 mx-4">
+                <!--<div class="swiper-slide bg-white rounded-lg shadow-lg p-6 mx-4">
                     <i class="fas fa-quote-right text-red-500 text-2xl"></i>
                     <div class="flex items-center mt-4">
                         <img src="image/customer-4.jpg" alt="Sophie M." class="w-12 h-12 rounded-full object-cover">
@@ -519,7 +564,7 @@
                         Un lieu idéal pour une soirée entre amis ou en famille. La variété des plats et la qualité des ingrédients m'ont vraiment impressionné. C'est devenu l'un de mes endroits préférés.
                     </p>
                 </div>
-            </div>
+            </div>-->
             <!-- Pagination -->
             <div class="swiper-pagination mt-4"></div>
         </div>
