@@ -39,35 +39,6 @@
         #review .swiper-pagination-bullet-active {
             background: #ef4444; /* Couleur rouge pour la pagination active */
         }
-        
-        /* Styles pour le menu mobile */
-        .navbar.active {
-            display: flex;
-            flex-direction: column;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.9);
-            padding: 1rem;
-            text-align: center;
-        }
-
-        .navbar.active a {
-            display: block; /* Chaque lien occupe une ligne */
-            margin: 0.5rem 0; /* Espacement entre les liens */
-            padding: 0.75rem 1.5rem; /* Ajout de padding pour une meilleure ergonomie */
-            border-radius: 0.5rem; /* Coins arrondis */
-            background: rgba(255, 255, 255, 0.1); /* Fond semi-transparent */
-            color: white; /* Couleur du texte */
-            text-align: center; /* Texte centré */
-            transition: background 0.3s ease, transform 0.2s ease; /* Animation fluide */
-        }
-
-        .navbar.active a:hover {
-            background: rgba(255, 255, 255, 0.3); /* Fond plus clair au survol */
-            transform: scale(1.05); /* Lien légèrement agrandi */
-        }
     </style>
 </head>
 <body class="bg-gray-100 font-sans">
@@ -93,7 +64,26 @@
     </div>
 </header>
     <!-- Home Section -->
-    
+    <section id="home" class="relative h-screen flex items-center justify-center">
+        <div class="swiper-container home-slider w-full h-full">
+            <div class="swiper-container home-slider">
+                <div class="swiper-slide relative">
+                    <img src="image/1burger.jpg" alt="Burger" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-center text-white p-4">
+                        <div>
+                            <span class="text-lg font-semibold">Our Special Dish</span>
+                            <h3 class="text-5xl font-bold mt-2">Burger</h3>
+                            <p class="mt-4 max-w-md mx-auto">
+                                Dégustez notre burger signature, savamment préparé avec des ingrédients frais et une sauce maison, pour une expérience culinaire inoubliable.
+                            </p>
+                            <a href="#" class="mt-6 inline-block bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition duration-300">Order Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
 
     <!-- Dishes Section -->
     <section id="dishes" class="py-16">
