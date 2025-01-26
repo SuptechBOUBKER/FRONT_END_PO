@@ -51,7 +51,7 @@ var swiper = new Swiper(".review-slider", {
     spaceBetween: 10, // Espace entre chaque diapositive en pixels
     centeredSlides: false, // Les diapositives ne seront pas centrées
     autoplay: {
-        delay: 5500, // Délai entre les défilements automatiques en millisecondes
+        delay: 6500, // Délai entre les défilements automatiques en millisecondes
         disableOnInteraction: false, // Continuer l'autoplay même après interaction
     },
     loop: true, // Permet de faire défiler les diapositives en boucle
@@ -62,15 +62,15 @@ var swiper = new Swiper(".review-slider", {
         },
         640: {
             slidesPerView: 1, // 2 diapositives vues sur les écrans moyens
-            spaceBetween: 15 // Un peu plus d'espace pour les écrans moyens
+            spaceBetween: 10 // Un peu plus d'espace pour les écrans moyens
         },
         1024: {
             slidesPerView: 2, // 3 diapositives vues sur les grands écrans
-            spaceBetween: 20 // Plus d'espace pour les grands écrans
+            spaceBetween: 10 // Plus d'espace pour les grands écrans
         },
         1440: {
             slidesPerView: 4, // 4 diapositives vues sur les très grands écrans
-            spaceBetween: 25 // Encore plus d'espace pour les très grands écrans
+            spaceBetween: 10 // Encore plus d'espace pour les très grands écrans
         }
     }
 });
