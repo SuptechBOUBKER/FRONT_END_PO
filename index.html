@@ -68,6 +68,45 @@
             background: rgba(255, 255, 255, 0.3); /* Fond plus clair au survol */
             transform: scale(1.05); /* Lien légèrement agrandi */
         }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .home-slider .swiper-slide {
+                height: 50vh; /* Adjust height for smaller screens */
+            }
+
+            .home-slider .swiper-slide h3 {
+                font-size: 2rem; /* Smaller font size for mobile */
+            }
+
+            .home-slider .swiper-slide p {
+                font-size: 1rem; /* Smaller font size for mobile */
+            }
+
+            .navbar {
+                display: none; /* Hide navbar on mobile */
+            }
+
+            .navbar.active {
+                display: flex; /* Show navbar when active */
+            }
+
+            #dishes .grid {
+                grid-template-columns: 1fr; /* Single column for dishes on mobile */
+            }
+
+            #menu .grid {
+                grid-template-columns: 1fr; /* Single column for menu items on mobile */
+            }
+
+            #review .swiper-slide {
+                padding: 10px; /* Smaller padding for review slides on mobile */
+            }
+
+            #order form {
+                padding: 0 10px; /* Add padding to form on mobile */
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-100 font-sans">
