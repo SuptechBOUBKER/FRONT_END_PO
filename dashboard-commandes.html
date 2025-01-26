@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord - Commandes</title>
+    <!-- Tailwind CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome (CDN) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+    <!-- En-tête -->
+    <header class="bg-white shadow-md p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <!-- Logo -->
+            <div class="text-2xl font-bold text-gray-800">
+                Resto
+            </div>
+
+            <!-- Icônes -->
+            <div class="flex space-x-6">
+                <a href="#" class="fas fa-heart text-gray-600 text-xl hover:text-red-500 transition duration-300"></a>
+                <a href="#" class="fas fa-shopping-cart text-gray-600 text-xl hover:text-blue-500 transition duration-300"></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenu principal -->
+    <main class="container mx-auto p-6">
+        <!-- Titre -->
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">Tableau de Bord - Commandes</h1>
+
+        <!-- Statistiques -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <!-- Carte 1 : Commandes totales -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold text-gray-700">Commandes totales</h2>
+                <p class="text-4xl font-bold text-blue-500">1,234</p>
+                <p class="text-sm text-gray-500">+12% ce mois-ci</p>
+            </div>
+
+            <!-- Carte 2 : Revenus -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold text-gray-700">Revenus</h2>
+                <p class="text-4xl font-bold text-green-500">$56,789</p>
+                <p class="text-sm text-gray-500">+8% ce mois-ci</p>
+            </div>
+
+            <!-- Carte 3 : Clients satisfaits -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold text-gray-700">Clients satisfaits</h2>
+                <p class="text-4xl font-bold text-yellow-500">92%</p>
+                <p class="text-sm text-gray-500">+5% ce mois-ci</p>
+            </div>
+        </div>
+
+        <!-- Graphique des commandes -->
+        <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h2 class="text-xl font-semibold text-gray-700 mb-4">Graphique des commandes</h2>
+            <div class="h-64 bg-gray-200 rounded-lg flex items-center justify-center">
+                <p class="text-gray-500">Graphique des commandes ici</p>
+            </div>
+        </div>
+
+        <!-- Liste des commandes récentes -->
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold text-gray-700 mb-4">Commandes récentes</h2>
+            <table class="w-full text-left">
+                <thead>
+                    <tr class="border-b">
+                        <th class="py-2">ID Commande</th>
+                        <th class="py-2">Client</th>
+                        <th class="py-2">Montant</th>
+                        <th class="py-2">Statut</th>
+                        <th class="py-2">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Commande 1 -->
+                    <tr class="border-b hover:bg-gray-50">
+                        <td class="py-3">#12345</td>
+                        <td class="py-3">Alexandre R.</td>
+                        <td class="py-3">$120.00</td>
+                        <td class="py-3"><span class="bg-green-100 text-green-600 px-2 py-1 rounded-full">Livré</span></td>
+                        <td class="py-3">2024-10-01</td>
+                    </tr>
+
+                    <!-- Commande 2 -->
+                    <tr class="border-b hover:bg-gray-50">
+                        <td class="py-3">#12346</td>
+                        <td class="py-3">Sophie M.</td>
+                        <td class="py-3">$89.00</td>
+                        <td class="py-3"><span class="bg-yellow-100 text-yellow-600 px-2 py-1 rounded-full">En cours</span></td>
+                        <td class="py-3">2024-10-02</td>
+                    </tr>
+
+                    <!-- Commande 3 -->
+                    <tr class="border-b hover:bg-gray-50">
+                        <td class="py-3">#12347</td>
+                        <td class="py-3">Lucas D.</td>
+                        <td class="py-3">$230.00</td>
+                        <td class="py-3"><span class="bg-red-100 text-red-600 px-2 py-1 rounded-full">Annulé</span></td>
+                        <td class="py-3">2024-10-03</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="bg-white shadow-md p-4 mt-8">
+        <div class="container mx-auto text-center text-gray-600">
+            &copy; 2024 Resto. Tous droits réservés.
+        </div>
+    </footer>
+
+</body>
+</html>
